@@ -1,0 +1,15 @@
+@media (min-width: 650px){
+    .siifLogo{
+        width: 300px;
+        height: 120px;
+    }
+
+}
+
+@media (min-width: 1024px){
+    .siifLogo{
+        width: 400px;
+        height: 160px;
+    }
+
+}
