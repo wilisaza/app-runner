@@ -14,6 +14,7 @@ function DataRecord({
   setDisplayPosition,
   showLabel,
   renderCondition,
+  recordWidth,
 }) {
   const [currentRecord, setCurrentRecord] = useState(recordData);
 
@@ -22,6 +23,8 @@ function DataRecord({
       setCurrentRecord(recordData.currentRecord ?? {});
     }
   }, [recordData]);
+
+  let displayElements = [];
 
   //handleChangeObject(setDataLogin,'loginPrev',true)
   const handleChange = (e) => {
@@ -61,6 +64,22 @@ function DataRecord({
       )
     );
   };
+
+  
+  if (renderCondition === "SINGLE_ROW") {
+    let maxRow = 0;
+    let i;
+    if (dataElements && dataElements.length) {
+      dataElements.map((e, index) => {
+        if (e.row > maxRow) maxRow = e.row;
+        })
+      for (i = 0; i <= maxRow; i++) {
+        displayElements[i] = dataElements.filter((e) => e.row === i).sort((a, b) => a.order - b.order);
+      }
+      console.log("displayElements", displayElements);
+    }
+  }
+
   //console.log("Elemento Actual DataRecord", currentRecord, displayPosition, recordPosition);
   return (
     <Box mt={1} /*sx={{backgroundColor: displayPosition===recordPosition ? 'grey.100' : 'white' }} */ >
@@ -89,9 +108,35 @@ function DataRecord({
         )}
       </Grid>) : (
        <Box sx={{ flexGrow: 1 }}>
-       <Grid container spacing={1} columns={120}>
-         <Grid item md={120}>  
-           <Grid container spacing={1} columns={120}>
+        <Grid container spacing={1} columns={recordWidth}>
+          {displayElements.map((row, index) => {
+            return (
+              <Grid item key={index} md={recordWidth}>
+                <Grid container key={index} spacing={1} columns={recordWidth}>
+                  {row.map((e, index) => {
+                    return (
+                      <Grid item key={index} xs={e.width}>
+                        <DataElement
+                          elementStruct={e}
+                          elementData={currentRecord[e["dataName"]]}
+                          onChangeElement={handleChange}
+                          showLabel={showLabel}
+                          displayPosition={displayPosition}
+                          recordPosition={recordPosition}
+                          renderCondition={renderCondition}
+                        />
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              </Grid>
+            );
+          })}
+        </Grid>
+        {/*
+       <Grid container spacing={1} columns={recordWidth}>
+         <Grid item md={recordWidth}>  
+           <Grid container spacing={1} columns={recordWidth}>
              <Grid item xs={6} md={10}>
                <TextField
                    label="Nro. Doc."
@@ -157,7 +202,7 @@ function DataRecord({
              </Grid>
            </Grid>
          </Grid>
-       </Grid>
+        </Grid>*/}
      </Box>
       )
       }

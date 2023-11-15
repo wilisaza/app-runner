@@ -8,7 +8,7 @@ import { isEmpty } from "@/functions/arrayFunctions"
 import '@fontsource/public-sans';
 
 
-function DataElement({elementStruct, elementData, onChangeElement, showLabel, displayPosition, recordPosition}) {
+function DataElement({elementStruct, elementData, onChangeElement, showLabel, displayPosition, recordPosition, renderCondition}) {
   const valIni = elementData;
   const [currentVal, setCurrentVal] = useState(elementData);
   const [modVal, setModVal] = useState(false);
@@ -28,6 +28,23 @@ function DataElement({elementStruct, elementData, onChangeElement, showLabel, di
   }, [currentVal]);
   //console.log('currentVal',currentVal, elementData)
   return (
+    renderCondition === "SINGLE_ROW" ? (
+      elementStruct.elementType === 'textItem' ? (
+        <TextField
+          label={elementStruct.prompt}
+          id={elementStruct.name}
+          defaultValue=""
+          size="small"
+          fullWidth
+          multiline = {elementStruct.multiLine}
+          rows={elementStruct.multiLine ? elementStruct.rows: 1}
+          value={!isEmpty(currentVal) ? currentVal : '' }
+          onChange={(e)=> setCurrentVal(e.target.value)}
+          onBlur={onChangeElement}
+        />)
+      :(<></>) 
+    )
+    :(
     <Grid item xs={12} sm={2} >
       <FormControl 
         size='sm'>
@@ -46,7 +63,7 @@ function DataElement({elementStruct, elementData, onChangeElement, showLabel, di
             //fullWidth 
             />
       </FormControl>
-    </Grid>
+    </Grid>)
   )
 }
 

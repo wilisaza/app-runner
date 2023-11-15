@@ -144,6 +144,7 @@ function DataBlock({
     blockData.length
   );
   const { dataElements } = blockStruct;
+  const recordWidth = blockStruct.width?? 0;
   console.log("dataElements", dataElements);
   let dataBlocks = [];
   if (renderCondition === "GRID_ROW") {
@@ -184,6 +185,7 @@ function DataBlock({
           setDisplayPosition={setDisplayPosition}
           showLabel={true }
           renderCondition={renderCondition}
+          recordWidth={recordWidth}
         /> ) : 
         ( dataBlocks )
       )
