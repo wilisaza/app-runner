@@ -36,7 +36,7 @@ function DataElement({elementStruct, elementData, onChangeElement, showLabel, di
           defaultValue=""
           size="small"
           fullWidth
-          multiline = {elementStruct.multiLine}
+          multiline = {elementStruct.multiLine?? false}
           rows={elementStruct.multiLine ? elementStruct.rows: 1}
           value={!isEmpty(currentVal) ? currentVal : '' }
           onChange={(e)=> setCurrentVal(e.target.value)}
