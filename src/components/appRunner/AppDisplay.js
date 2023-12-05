@@ -14,6 +14,8 @@ import { validateLaunchToken } from "@/functions/jwtFunctions";
 import SideBar from "./SideBar";
 import { EditNote } from "@mui/icons-material";
 import { Router, useRouter } from "next/router";
+import { handleChangeObject } from '@/functions/stateFunctions'
+
 
 const drawerWidth = 280;
 
@@ -89,6 +91,9 @@ function AppDisplay() {
     console.log("appLogin", appLogin);
     const fetchAppStruct = await fetchFunctions.fetchApi(fetchObj);
     // Acá debe ir validación para el parámetro / vencimiento del token
+    if (!fetchAppStruct.success) {
+      handleChangeObject(setAppStruct, 'fullName', fetchAppStruct.error.message?? 'AppStruct Error - No se pudo obtener la estructura')
+    }
     if (fetchAppStruct.success) {
       setAppStruct(fetchAppStruct.data);
     }

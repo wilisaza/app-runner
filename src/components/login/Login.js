@@ -42,7 +42,7 @@ const appLogin = async (applicationSpecs, dataLogin, setDataLogin, setAlertLogin
     })
   }
   //Token de uso temporal mientras se define generación de Token para AlternateUser
-  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndpbGlzYXphQGdtYWlsLmNvbSIsImlkIjoiNTJiMzA2YmYtNDYxNS00NzNmLWEzYjQtNTE3YWYxOGQ4YWFjIiwiZmlyc3ROYW1lIjoiV2lsbGlhbSIsImxhc3ROYW1lIjoiSXphc2EiLCJpYXQiOjE2OTE1MTAzMDUsImV4cCI6MTcwMDE1MDMwNX0.xHRPOZ5OiOZNjf3bibNCEP78JOU-nnix14drWUZTWOQ'
+  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyYjMwNmJmLTQ2MTUtNDczZi1hM2I0LTUxN2FmMThkOGFhYyIsImlhdCI6MTcwMTgwMzIxOCwiZXhwIjoxNzIyMDYyNDE4fQ.EmgbgTI2pBbvMwzIHDE8xO1hoSY-BM1lbL0RFcSwvQM'
   
   if(!checkAltUser.data?.length && loginSucess){ //No encuentra usuario alterno, se procede con el usuario de la plataforma
     loginSucess = true
