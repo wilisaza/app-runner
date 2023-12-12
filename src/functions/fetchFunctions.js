@@ -60,6 +60,7 @@ const fetchFunctions = {
       mode: "cors",
       headers: Object.assign(head, miObj.header),
     };
+    console.log('urlm', urlm)
     let res = await fetch(urlm, fetchParams)
     let ret = await res.json();
     return ret;

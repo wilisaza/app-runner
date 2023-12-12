@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>App Runner</title>
+        <title>App Runner 2</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <MaterialCssVarsProvider theme={{ [THEME_ID]: materialTheme }}>
